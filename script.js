@@ -46,14 +46,6 @@ numbers.forEach((number) => {
     })
 })
 
-inputNumber = (number) => {
-    if (currentNumber === '0') {
-        currentNumber = number
-    } else {
-        currentNumber += number
-    }
-}
-
 const operators = document.querySelectorAll(".operator")
 
 operators.forEach ((operator) => {
@@ -82,18 +74,18 @@ equalsign.addEventListener('click', () => {
 
 const calculate = () => {
     let result = ''
-    switch(calculatoionOperator) {
+    switch(calculationOperator) {
         case "+":
-            result = prevNumber + currentNumber
+            result = parseInt (prevNumber) + parseInt (currentNumber)
             break
         case "-":
-            result = prevNumber + currentNumber
+            result = prevNumber - currentNumber
             break
         case "*":
-            result = prevNumber + currentNumber
+            result = prevNumber * currentNumber
             break
         case "/":
-            result = prevNumber + currentNumber
+            result = prevNumber / currentNumber
             break
         default:
             return
@@ -102,21 +94,12 @@ const calculate = () => {
     calculationOperator = ''
 }
 
-const equalSign = document.querySelector('.equalSign')
-
 equalsign.addEventListener('click', () => {
     calculate()
     updateScreen(currentNumber)
 })
 
-calculate = () => {
-    let result = ''
-    switch(calculationOperator) {
-        case '+':
-            result = parseFloat(prevNumber) + parseFloat(currentNumber)
-            break
-    }
-}
+
 
 const clearBtn = document.querySelector('.all-clear')
 
@@ -159,10 +142,3 @@ inputDecimal = (dot) => {
     currentNumber += dot
 }
 
-inputOperator = (operator) => {
-    if (calculationOperator === '') {
-        prevNumber = currentNumber
-    }
-    calculationOperator = operator
-    currentNumber = '0'
-}
